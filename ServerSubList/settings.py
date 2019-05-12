@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'subCityList.apps.SubcitylistConfig',
-    'rest_framework',
+    'bootstrap4',
+    'crispy_forms',
 
 ]
 
@@ -83,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'deps9vnq3c83o0',
         'USER': 'cmctzgctzkxumi',
-        'PASSWORD': 'GREY_DEV_DB_PW',
+        'PASSWORD': os.environ.get('GREY_DEV_DB_PW'),
         'HOST': 'ec2-54-235-167-210.compute-1.amazonaws.com',
         'PORT': '5432',
         },
@@ -91,17 +92,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'greylocaldb',
         'USER': 'Ashley Johnson',
-        'PASSWORD': 'GREY_DB_PW',
+        'PASSWORD': os.environ.get('GREY_DB_PW'),
         'HOST': 'localhost',
         'PORT': '5432',
         },
 }
 
-REST_FRAMEWORK = {
 
-}
-
-# CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 # Password validation
