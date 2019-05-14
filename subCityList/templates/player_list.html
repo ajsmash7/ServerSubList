@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+<h2>City Hunter</h2>
+    <div>
+    <P>Search For Player</P>
+        <!-- The form fields are built from the definition in forms.py -->
+        <form action="{% url 'player_list.html' %}">
+            {{ form|crispy }}
+            <input type='submit' value='Search'/>
+        </form>
+    </div>
+
+    {% if search_name %}
+        <h2 id="player_list_title"> All Results For '{{ search_name }}'  <a href="{% url 'player_list.html' %}" id='clear_search'>clear</a></h2>
+    {% else %}
+        <h2 id="player_list_title"> No Results for '{{ search_name }}'</h2>
+    {% endif %}
+
+    <div>
+    {% for player in players %}
+
+        <div id="player_{{ player.pk }}">
+        <p class="player_name"><a href="{% url 'player_detail.html' player_pk=player.pk %}">Player: {{ player.name }}</a></p>
+        <p><span id="player_team">Alliance: {{ player.team }}</span></p>
+        <p><span id="player_rank">Rank: {{ player.rank }}</span></p>
+        </div>
+
+    {% empty %}
+        <P>{{ message }}</P>
+
+    {% endfor %}
+    </div>
+    <div>
+    <form action="{% url 'player_add.html' %}">
+        <input id="player_add" type="submit" value="Add Player">
+    </form>
+    </div>
+{% endblock %}
