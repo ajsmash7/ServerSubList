@@ -6,27 +6,6 @@ from .choices import *
 
 # Create your models here.
 
-# Use Django's built in User model to create user registrations and logins
-# add unique constraint for email
-# User.meta.get_field('email').unique = True
-#
-# # Require Email, first name, last name
-# User.meta.get_field('email')._blank = False
-# User.meta.get_field('first_name')._blank = False
-# User.meta.get_field('last_name')._blank = False
-
-# Create user authentication tokens upon creation
-
-
-# Create user authentication tokens
-# @receiver(post_save, sender=settings.AUTH_USER_MODEL)
-# def create_auth_token(sender, instance=None, created=False, **kwargs):
-#     if created:
-#         Token.objects.create(user=instance)
-#
-# for user in User.objects.all():
-#     Token.objects.get_or_create(user=user)
-
 
 ''' A player that owns sub cities 
     To streamline user input, and create first step of validation, 
