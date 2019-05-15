@@ -1,0 +1,23 @@
+[
+  {"model" : "subCityList.Subcity", "pk" : 1 , "fields" :
+    { "coords" : "0001,0001",
+      "player" : 1,
+      "culture" : "CN",
+      "quality": "GLD"
+    }
+  },
+  {"model" : "subCityList.Subcity", "pk" : 2 , "fields" :
+    { "coords" : "0002,0002",
+      "player" : 1,
+      "culture" : "JP",
+      "quality": "GLD"
+    }
+  },
+  {"model" : "subCityList.Subcity", "pk" : 3 , "fields" :
+    { "coords" : "0003,0003",
+      "player" : 1,
+      "culture" : "RS",
+      "quality": "GLD"
+    }
+  }
+]
