@@ -35,7 +35,7 @@ LOGIN_REDIRECT_URL = '/'    # Home Page
 # X_FRAME_OPTIONS = 'DENY'
 
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'subCityList.apps.SubcitylistConfig',
+    'subCityList',
     'gunicorn',
     'bootstrap4',
     'crispy_forms',
@@ -63,7 +63,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'ServerSubList.urls'
