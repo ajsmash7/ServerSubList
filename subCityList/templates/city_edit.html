@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+    <H2>Edit City</H2>
+
+    {% if message %}
+        <P>{{ message }}</p>
+    {% endif %}
+
+    <form method='post' action="">
+        {% csrf_token %}
+        <table id="city_edit_form">
+            {{ form.as_table|crispy }}
+        </table>
+        <button type='submit'>Save Changes</button>
+    </form>
+
+{% endblock %}

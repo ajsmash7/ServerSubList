@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_filters %}
+
+{% block content %}
+
+    <h2>Login</h2>
+    <form method="post" action="">
+    {% csrf_token %}
+        <table id="login_form">
+            {{ form.as_table|crispy }}
+        </table>
+        <button type="submit">Login</button>
+    </form>
+
+    <p><a href="{% url 'register.html' %}">Or Create an Account</a></p>
+
+{% endblock %}
+
