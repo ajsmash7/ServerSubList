@@ -26,7 +26,7 @@ def player_add(request):
         form = PlayerForm(request.POST)
         if form.is_valid():
             player = form.save()
-            return redirect('player_detail.html', player_pk=player.pk)
+            return redirect('subCityList:player_detail', player_pk=player.pk)
 
     else:
         form = PlayerForm()

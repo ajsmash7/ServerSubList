@@ -96,7 +96,7 @@ class PlayerForm(forms.ModelForm):
 
     def clean_name(self):
 
-        name = self.cleaned_data['username']
+        name = self.cleaned_data['name']
 
         if not name:
             raise ValidationError('Please enter a username')
