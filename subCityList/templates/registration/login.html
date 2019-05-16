@@ -8,12 +8,12 @@
     <form method="post" action="">
     {% csrf_token %}
         <table id="login_form">
-            {{ form.as_table|crispy }}
+            {{ form|crispy }}
         </table>
         <button type="submit">Login</button>
     </form>
 
-    <p><a href="{% url 'register.html' %}">Or Create an Account</a></p>
+    <p><a href="{% url 'subCityList:register' %}">Or Create an Account</a></p>
 
 {% endblock %}
 

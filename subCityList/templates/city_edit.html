@@ -11,7 +11,7 @@
     <form method='post' action="">
         {% csrf_token %}
         <table id="city_edit_form">
-            {{ form.as_table|crispy }}
+            {{ form|crispy }}
         </table>
         <button type='submit'>Save Changes</button>
     </form>

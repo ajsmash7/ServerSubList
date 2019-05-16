@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 import django_heroku
 import dj_database_url
+import psycopg2
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,10 +25,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'v_g=3d$=b1!(f@k4q8^mbjpvot-^rusf1rr=f4)+zvz@eevw(w'
 
-LOGIN_REDIRECT_URL = '/'    # Home Page
+LOGIN_REDIRECT_URL = 'subCityList:my_user_profile'    # Home Page
+LOGOUT_REDIRECT_URL = 'subCityList:homepage'
 # SECURITY WARNING: don't run with debug turned on in production!
 
-# SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False
 # SECURE_CONTENT_TYPE_NOSNIFF = True
 # SECURE_BROWSER_XSS_FILTER = True
 # SESSION_COOKIE_SECURE = True
@@ -35,7 +37,7 @@ LOGIN_REDIRECT_URL = '/'    # Home Page
 # X_FRAME_OPTIONS = 'DENY'
 
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -70,8 +72,7 @@ ROOT_URLCONF = 'ServerSubList.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'subCityList/templates')]
-        ,
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -112,24 +113,36 @@ WSGI_APPLICATION = 'ServerSubList.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'deps9vnq3c83o0',
-        'USER': 'cmctzgctzkxumi',
-        'PASSWORD': os.environ.get('GREY_DEV_DB_PW'),
-        'HOST': 'ec2-54-235-167-210.compute-1.amazonaws.com',
-        'PORT': '5432',
-    },
+# DATABASE_URL = os.environ.get('DATABASE_URL')
+#
+# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+#
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
-    'test': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'greylocaldb',
-        'USER': 'Ashley Johnson',
-        'PASSWORD': os.environ.get('GREY_DB_PW'),
-        'HOST': 'localhost',
-        'PORT': '5432',
-        },
+DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'deps9vnq3c83o0',
+    #     'USER': 'cmctzgctzkxumi',
+    #     'PASSWORD': os.environ.get('GREY_DEV_DB_PW'),
+    #     'HOST': 'ec2-54-235-167-210.compute-1.amazonaws.com',
+    #     'PORT': '5432',
+    # },
+    #
+    # 'test': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'greylocaldb',
+    #     'USER': 'Ashley Johnson',
+    #     'PASSWORD': os.environ.get('GREY_DB_PW'),
+    #     'HOST': 'localhost',
+    #     'PORT': '5432',
+    #     },
+    'default': {
+
+        'ENGINE': 'django.db.backends.sqlite3',
+
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
 }
 
 
@@ -177,7 +190,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-
 # django_heroku.settings(locals())
-# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+
 

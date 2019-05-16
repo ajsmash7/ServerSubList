@@ -6,8 +6,9 @@ from django.contrib.auth.models import User
 from .forms import PlayerForm, EditPlayerForm, CityForm, EditCityOwner, SearchCoordsForm, SearchPlayerForm, UserRegistrationForm, EditProfileForm
 import string
 
-# Test that forms are validating correctly, and don't accept invalid data
+""" STILL WRITING TESTS"""
 
+# Test that forms are validating correctly, and don't accept invalid data
 
 class PlayerFormTests(TestCase):
 
@@ -33,6 +34,7 @@ class PlayerFormTests(TestCase):
         form_data = {"name": "Belle", "team": "GREY", "rank": 7}
         form = PlayerForm(form_data)
         self.assertFalse(form.is_valid())
+
 
 class CityFormTests(TestCase):
 
@@ -128,6 +130,9 @@ class EditPlayerFormTests(TestCase):
         edit_form_data = {'player_pk': form.player_pk, "name": "Belle", "team": "DOA", "rank": 7}
         edit_form = EditPlayerForm(edit_form_data)
         self.assertTrue(edit_form.is_valid())
+
+
+'''TESTS FOR TEMPLATES TO COME'''
 
 
 

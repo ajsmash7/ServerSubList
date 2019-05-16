@@ -16,13 +16,13 @@
             <div class="row justify-content-center">
                 <div class="col-8">
                     <h1 class="mt-2">Grey</h1>
-                    <a href="{% url 'player_list.html' %}">Search</a>
-                    <a href="{% url 'city.view.all.html' %}">View All</a>
+                    <a href="{% url 'subCityList:player_list' %}">Search</a>
+                    <a href="{% url 'subCityList:city_view_all' %}">View All</a>
 
                     {% if user.is_authenticated %}
-                        <span id='welcome_user_msg'>You are logged in, <a href="{% url 'profile.html' user_pk=user.pk %}">{{ user.username }}</a>.  <a href="{% url 'logout' %}">Logout</a></span>
+                        <span id='welcome_user_msg'>You are logged in, <a href="{% url 'subCityList:user_profile' user_pk=user.pk %}">{{ user.username }}</a>.  <a href="{% url 'subCityList:logout' %}">Logout</a></span>
                     {% else %}
-                        <span id='login_or_sign_up'><a href="{% url 'login.html' %}?next={{ request.path }}">Login or sign up</a></span>
+                        <span id='login_or_sign_up'><a href="{% url 'subCityList:login' %}?next={{ request.path }}">Login or sign up</a></span>
                     {% endif %}
                 <hr>
                 {% block content %}

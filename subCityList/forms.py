@@ -12,7 +12,7 @@ from django.utils.encoding import force_text
 from .models import Player, Subcity
 
 # Validator for coords field for data integrity
-
+# extends the RegexValidator to test that trailing zeros are used for coordinates for data integrity
 
 class CoordValidator(RegexValidator):
     regex = re.compile(r'/d/d/d/d,/d/d/d/d')
@@ -21,6 +21,7 @@ class CoordValidator(RegexValidator):
     inverse_match = False
     flags = 0
 
+    # override call method
     def __call__(self, value):
         value = force_text(value)
 
@@ -37,6 +38,7 @@ class CoordValidator(RegexValidator):
     #             (self.code == other.code)
     #     )
 
+    # write custom method to call for regex validation. raise a ValidationError if pattern mismatch
     def validate_coords(self, value):
         if self.regex.match(value):
             return True
@@ -60,7 +62,7 @@ class CityForm(forms.ModelForm):
         fields = ('coords', 'culture', 'quality')
 
     # Validate that city coordinates have not already been assigned
-
+    # verify coords match the regex validation
     def clean_coords(self):
         coordinates = self.clean_data['coords']
 
@@ -86,7 +88,7 @@ class CityForm(forms.ModelForm):
     #
     #     return new_city
 
-
+# Form to create a new player
 class PlayerForm(forms.ModelForm):
     class Meta:
         model = Player
@@ -104,7 +106,8 @@ class PlayerForm(forms.ModelForm):
 
         return name
 
-
+# Form to search for a player. Returns a list of all possible matches. In case someone has poor spelling
+# Throw a validation error if empty
 class SearchPlayerForm(forms.Form):
     search_name = forms.CharField(label='Enter Player Name', max_length=200)
 
@@ -116,7 +119,7 @@ class SearchPlayerForm(forms.Form):
 
         return name
 
-
+# Search coordinates of a city, validate the coordinates.
 class SearchCoordsForm(forms.Form):
     search_term = forms.CharField(label='Search Coordinates', max_length=9, validators=[CoordValidator.validate_coords])
 
@@ -203,7 +206,7 @@ class UserRegistrationForm(UserCreationForm):
 
         return user
 
-
+# Extend UserChangeForm to edit user profile
 class EditProfileForm(UserChangeForm):
 
     # use the User model meta data
@@ -249,7 +252,7 @@ class EditProfileForm(UserChangeForm):
 
         return user
 
-
+# Edit the information of a player record
 class EditPlayerForm(UserChangeForm):
 
     # use the Player model meta data, display all fields
