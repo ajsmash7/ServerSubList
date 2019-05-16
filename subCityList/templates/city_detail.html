@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <h2><a href="{% url 'player_detail.html' player_pk=city.player.pk %}">{{ city.player.name }}</a></h2>
+    <h2><a href="{% url 'subCityList:player_detail' player_pk=city.player.pk %}">{{ city.player.name }}</a></h2>
     <h3>{{ city.quality }} {{ city.culture }}</h3>
 
     <div>
@@ -15,13 +15,13 @@
     </div>
 
     <div>
-    <form action="{% url 'city_edit.html' city_pk=city.pk %}">
+    <form action="{% url 'subCityList:city_edit' city_pk=city.pk %}">
         <input id="edit_city" type="submit" value="Edit City">
     </form>
     </div>
 
     <div>
-    <form action={% url 'city_add.html' player_pk=city.player.pk %}>
+    <form action={% url 'subCityList:city_add' player_pk=city.player.pk %}>
         <button type="submit">Add City</button>
     </form>
     </div>

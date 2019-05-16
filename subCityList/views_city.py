@@ -3,7 +3,7 @@ from .models import Player, Subcity
 from .forms import CityForm, EditCityOwner, SearchCoordsForm
 
 
-# Requires that the Player exist. If no player, will redirect to add one
+# Requires that the Player exist. If no player, will redirect to add a player form template
 def city_add(request, player_pk):
     player = get_object_or_404(Player, player_pk)
 
@@ -22,19 +22,21 @@ def city_add(request, player_pk):
         form = CityForm(instance=player)
         return render(request, 'city_add.html', { 'form': form })
 
-
+# detail page of the attributes of one city.
+# Requires the primary key of the specific city. If the city doesn't exist throw 404
+# loads the information of the player who owns it as well.
 def city_detail(request, city_pk):
     city = get_object_or_404(Subcity, city_pk)
     player_pk = city.player.pk
     player = get_object_or_404(Player, player_pk)
     return render(request, 'city_detail.html', {'city': city, 'player': player})
 
-
+# view the entire list of all entered sub-cities
 def city_view_all(request):
-    players = Player.objects.all().order_by('name')
-    return render(request, 'city_view_all.html', {'players': players})
+    cities = Subcity.objects.all().order_by('player')
+    return render(request, 'city_view_all.html', {'cities': cities})
 
-
+# Search city coordinates. If the search term is an exact match, display the first city returned
 def city_coords(request):
     form = SearchCoordsForm()
     search_term = request.GET.get('search_term')
@@ -47,7 +49,7 @@ def city_coords(request):
         message = 'City Not Found'
         return render(request, 'city_coords.html', {'form': form, 'message': message, 'search_term': search_term})
 
-
+# edit the owner of a cit. To do that, you'll also need the primary key of the player
 def city_edit(request, city_pk):
     city = get_object_or_404(Subcity, city_pk)
     player_pk = city.player.pk

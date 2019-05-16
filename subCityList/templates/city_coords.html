@@ -17,10 +17,10 @@
 
 <div>
 {% if search_term %}
-  <h2 id="city_coords_title">Subordinate City Detail <a href="{% url 'city_coord.html' %}" id='clear_search'>Clear</a></h2>
+  <h2 id="city_coords_title">Subordinate City Detail <a href="{% url 'subCityList:city_coord' %}" id='clear_search'>Clear</a></h2>
 {% else %}
   <h2 id="city_coords_title">Not Found </h2>
-    <h3><a href="{% url 'city_add.html' %}" id="city_add">Add City</a></h3>
+    <h3><a href="{% url 'subCityList:city_add' %}" id="city_add">Add City</a></h3>
 {% endif %}
 </div>
 
@@ -36,7 +36,7 @@
     </div>
 
 
-    <form action="{% url 'city_edit.html' city_pk=city.pk %}">
+    <form action="{% url 'subCityList:city_edit' city_pk=city.pk %}">
       <input id="city_edit_form" type='submit' value='Edit City'>
     </form>
 

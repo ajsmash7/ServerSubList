@@ -12,7 +12,7 @@ Includes the user's cities on the front page -->
     <h2>Grey Member: { user.username }</h2>
 
     {% if user.username %}
-        <form action="{% url 'edit_profile.html' %}">
+        <form action="{% url 'subCityList:edit_profile' %}">
         <input id="edit_profile_form" type='submit' value='Edit Profile'>
         </form>
     {% endif %}
@@ -21,9 +21,9 @@ Includes the user's cities on the front page -->
     <div>
     {% for city in cities %}
         <div class='city' id="city_{{ city.pk }}">
-        <h3 class="city_type"><a href="{% url 'city_detail.html' city_pk=city.pk %}">{{ city.quality }}{{ city.culture }}</a></h3>
+        <h3 class="city_type"><a href="{% url 'subCityList:city_detail' city_pk=city.pk %}">{{ city.quality }}{{ city.culture }}</a></h3>
         <P class="city_location">{{ city.coords }}</P>
-        <P><a href="{% url 'city_edit.html' city_pk=city.pk %}">Edit City</a></P>
+        <P><a href="{% url 'subCityList:city_edit' city_pk=city.pk %}">Edit City</a></P>
         </div>
 
     {% empty %}
@@ -36,7 +36,7 @@ Includes the user's cities on the front page -->
 <!-- Buttons for User to Add Own Cities -->
     <div>
     {% if city %}
-        <form action="{% url 'city_add.html' player_pk=city.player.pk %}">
+        <form action="{% url 'subCityList:city_add' player_pk=city.player.pk %}">
         <input id="add_note" type='submit' value='Add your own notes'>
         </form>
 

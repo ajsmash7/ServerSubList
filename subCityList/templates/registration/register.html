@@ -8,12 +8,12 @@
         <P>{{ message }}</p>
     {% endif %}
 
-    <form method='post' action="">
+     <form method='post' action="">
         {% csrf_token %}
         <table id="registration_form">
-            {{ form.as_table| crispy }}
+            {{ form| crispy }}
         </table>
         <button type='submit'>Register</button>
-    </form>
+</form>
 
 {% endblock %}

@@ -3,33 +3,26 @@
 {% block content %}
 
     <h2>View All</h2>
-    <div>
-    {% for player in players %}
-
-        <h3><a href="{% url 'player_detail.html' player_pk=player.pk %}"> {{ player.name }} owned Cities </a></h3>
-
-    <!-- The form fields are built from the definition in forms.py -->
-        <div>
-        {% for city in player.cities.all %}
+   <div>
+        {% for city in cities %}
 
             <div id="city_{{ city.pk }}">
-            <p class="city_location"><a href="{% url 'city_detail.html' city_pk=city.pk %}">Coords: {{ city.coords }}</a></p>
+            <p class="city_location"><a href="{% url 'subCityList:city_detail' city_pk=city.pk %}">Coords: {{ city.coords }}</a></p>
             <p><span id="city_culture">Culture: {{ city.culture }}</span></p>
             <p><span id="city_quality">Quality: {{ city.quality }}</span></p>
             </div>
 
         {% empty %}
-            <P>No Cities Found for {{ player.name }}</P>
+            <P>No Cities Found</P>
 
         {% endfor %}
-        </div>
 
         <div>
-        <form action={% url 'city_add.html' player.pk %}>
+        <form action={% url 'subCityList:city_add' player.pk %}>
             <button type="submit">Add City</button>
         </form>
         </div>
-    {% endfor %}
+
     </div>
 
 {% endblock %}

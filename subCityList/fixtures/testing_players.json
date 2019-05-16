@@ -1,0 +1,20 @@
+[
+  {"model" : "subCityList.Subcity", "pk" : 1 , "fields" :
+    { "name" : "Belle",
+      "team" : "GRY",
+      "rank": 7
+    }
+  },
+  {"model" : "subCityList.Subcity", "pk" : 2 , "fields" :
+    { "name" : "Angel",
+      "team" : "DOA",
+      "rank": 8
+    }
+  },
+  {"model" : "subCityList.Subcity", "pk" : 3 , "fields" :
+    { "name" : "Hardriver",
+      "team" : "GRY",
+      "rank": 8
+    }
+  }
+]
