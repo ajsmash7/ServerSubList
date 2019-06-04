@@ -1,0 +1,15 @@
+{% extends 'subCityList/base.html' %}
+
+{% load crispy_forms_filters %}
+
+{% block content %}
+
+    <h2>Player</h2>
+    <form method="post" action="">{% csrf_token %}
+        <table id="player_form">
+            {{ form|crispy }}
+        </table>
+        <button type="submit">Add</button>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'subCityList/base.html' %}
+
+{% block content %}
+
+    <h2>View All</h2>
+   <div class="container pt-5 justify-content-center">
+
+    {% for city in cities %}
+        <div class='d-flex' id="city_{{ city.id }}">
+
+            <div class="mr-auto">{{ city.quality }} {{ city.culture }}</div>
+            <div class="p-2"><a href="{% url 'subCityList:player_detail' player_pk=city.player.id %}">{{ city.player.name }}</a></div>
+            <div class="ml-auto p-2"><a href="{% url 'subCityList:city_detail' city_pk=city.id %}">{{ city.coords }}</a></div>
+        </div>
+
+        <p><a href="{% url 'subCityList:city_edit' city_pk=city.id %}">Edit City</a></p>
+        <div class="border-bottom border-white m-2"></div>
+
+    {% empty %}
+        <p id='no_records'>No Cities Entered Yet</p>
+
+    {% endfor %}
+
+    </div>
+
+
+
+        <div class="pt-3">
+        <form action={% url 'subCityList:player_list' %}>
+            <button type="submit">Add City</button>
+        </form>
+        </div>
+
+{% endblock %}

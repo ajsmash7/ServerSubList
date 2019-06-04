@@ -1,0 +1,17 @@
+{% extends 'subCityList/base.html' %}
+
+{% block content %}
+
+    <div>
+        <h3><a href="{% url 'subCityList:player_detail' player_pk=city.player.id %}">{{ city.player.name }}</a></h3>
+        <p>{{ city.quality }} {{ city.culture }}</p>
+        <p><span id="city_coords">Coordinates: {{ city.coords }}</span></p>
+    </div>
+
+    <div>
+    <form action="{% url 'subCityList:city_edit' city_pk=city.id %}">
+        <input id="edit_city" type="submit" value="Edit City">
+    </form>
+    </div>
+
+{% endblock %}

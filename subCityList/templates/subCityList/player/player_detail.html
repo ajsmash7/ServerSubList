@@ -1,0 +1,47 @@
+{% extends 'subCityList/base.html' %}
+
+{% block content %}
+
+     <div>
+    <h2>{{ player.name }} </h2>
+
+    <div class="d-flex pb-5">
+        <div class="mr-auto"> Alliance: {{ player.team }}</div>
+        <div class="mr-auto">Total Cities: {{ player.cities.count }} out of {{ player.rank }}</div>
+
+
+
+    {% if player %}
+        <form action="{% url 'subCityList:player_edit' player_pk=player.id %}">
+        <input id="edit_player_form" type='submit' value='Edit Player'>
+        </form>
+    {% endif %}
+    </div>
+
+    <div class="container pt-5 justify-content-center">
+
+    {% for city in cities %}
+        <div class='d-flex' id="city_{{ city.id }}">
+
+            <div class="mr-auto">{{ city.quality }} {{ city.culture }}</div>
+            <div class="p-2"><a href="{% url 'subCityList:city_detail' city_pk=city.id %}">{{ city.coords }}</a></div>
+        </div>
+
+        <p><a href="{% url 'subCityList:city_edit' city_pk=city.id %}">Edit City</a></p>
+        <div class="border-bottom border-white m-2"></div>
+
+    {% empty %}
+        <p id='no_records'>{{ message }}</p>
+
+    {% endfor %}
+
+    </div>
+
+    </div>
+
+    <div class="pt-5">
+    <form action={% url 'subCityList:city_add' player_pk=player.id %}>
+        <button type="submit">Add City</button>
+    </form>
+    </div>
+{% endblock %}

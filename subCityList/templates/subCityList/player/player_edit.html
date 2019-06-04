@@ -1,0 +1,19 @@
+{% extends 'subCityList/base.html' %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+    <H2>Edit Player</H2>
+
+    {% if message %}
+        <P>{{ message }}</p>
+    {% endif %}
+
+    <form method='post' action="">
+        {% csrf_token %}
+        <table id="edit_player_form">
+            {{ form| crispy }}
+        </table>
+        <button type='submit'>Save Changes</button>
+    </form>
+
+{% endblock %}

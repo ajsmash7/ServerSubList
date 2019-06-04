@@ -1,0 +1,16 @@
+{% extends 'subCityList/base.html' %}
+
+{% block content %}
+    <H2>Edit Profile</H2>
+    {% if message %}
+        <P>{{ message }}</p>
+    {% endif %}
+
+    <form method='post' action="">{% csrf_token %}
+        <table id="editprofile_form">
+            {{ form.as_table}}
+        </table>
+        <button type='submit'>Save Changes</button>
+    </form>
+
+{% endblock %}

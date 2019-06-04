@@ -1,0 +1,18 @@
+{% extends 'subCityList/base.html' %}
+
+{% load crispy_forms_filters %}
+
+{% block content %}
+
+    <h2>Add City</h2>
+    <h3>Player: {{ player.name }}</h3>
+    <form method='post' action="">{% csrf_token %}
+        <table id="city_form">
+            {{ form| crispy }}
+        </table>
+        <button type="submit">Add</button>
+    </form>
+
+    <p><a href="{% url 'subCityList:city_add' player_pk=player.id %}">Cancel</a></p>
+
+{% endblock %}

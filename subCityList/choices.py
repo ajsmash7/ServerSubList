@@ -22,7 +22,7 @@ TEAM_NAMES = (
     (EAD, 'EAD'),
     (VN1, 'VN1'),
     (UTO, 'UTO'),
-    (TAGLESS, ' '),
+    (TAGLESS, 'TAGLESS'),
 )
 
 # Every player has a ranking they have earned. The ranking earns you the ability to hold a certain number of
@@ -44,13 +44,13 @@ RANKS = (
 )
 
 # There are seven cultures in the game. I will save by country abbr.
-ARABIA = 'SA'
-AMERICA = 'US'
-CHINA = 'CN'
-EUROPE = 'EU'
-JAPAN = 'JP'
-KOREA = 'KR'
-RUSSIA = 'RU'
+ARABIA = 'ARABIA'
+AMERICA = 'AMERICA'
+CHINA = 'CHINA'
+EUROPE = 'EUROPE'
+JAPAN = 'JAPAN'
+KOREA = 'KOREA'
+RUSSIA = 'RUSSIA'
 SUB_CULTURE = (
     (ARABIA, 'ARABIA'),
     (AMERICA, 'AMERICA'),
@@ -63,10 +63,10 @@ SUB_CULTURE = (
 
 # There are five levels, but no one saves white sub coords. most don't even save green, though I'm including
 # The color indicates if it is an epic, legendary, excellent, or common quality
-EPIC = 'GLD'
-LEGENDARY = 'PUR'
-EXCELLENT = 'BLU'
-COMMON = 'GRN'
+EPIC = 'GOLD'
+LEGENDARY = 'PURPLE'
+EXCELLENT = 'BLUE'
+COMMON = 'GREEN'
 SUB_QUALITY = (
     (EPIC, 'GOLD'),
     (LEGENDARY, 'PURPLE'),

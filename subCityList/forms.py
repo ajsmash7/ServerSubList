@@ -63,19 +63,19 @@ class CityForm(forms.ModelForm):
 
     # Validate that city coordinates have not already been assigned
     # verify coords match the regex validation
-    def clean_coords(self):
-        coordinates = self.clean_data['coords']
-
-        city = Subcity.objects.filter(coords__iexact=coordinates).first()
-
-        if not coordinates:
-            raise ValidationError('Coordinates entered incorrectly. Pattern 0000,0000')
-
-        if city:
-            owner = city.player.name
-            raise ValidationError('City is already owned by ' + owner)
-
-        return coordinates
+    # def clean_coords(self):
+    #     coordinates = self.clean_data['coords']
+    #
+    #     city = Subcity.objects.filter(coords__iexact=coordinates).first()
+    #
+    #     if not coordinates:
+    #         raise ValidationError('Coordinates entered incorrectly. Pattern 0000,0000')
+    #
+    #     if city:
+    #         owner = city.player.name
+    #         raise ValidationError('City is already owned by ' + owner)
+    #
+    #     return coordinates
 
     # def save(self, commit=True):
     #     new_city= super(CityForm, self).save(commit=False)
@@ -218,28 +218,6 @@ class EditProfileForm(UserChangeForm):
     # to Django password requirements
     # commit the changes to the form template
 
-    def clean_username(self):
-
-        username = self.cleaned_data['username']
-
-        if not username:
-            raise ValidationError('Please enter a username')
-
-        if User.objects.filter(username__iexact=username).exists():
-            raise ValidationError('A user with that username already exists')
-
-        return username
-
-    def clean_email(self):
-        email = self.cleaned_data['email']
-        if not email:
-            raise ValidationError('Please enter an email address')
-
-        if User.objects.filter(email__iexact=email).exists():
-            raise ValidationError('A user with that email address already exists')
-
-        return email
-
     def save(self, commit=True):
         user = super(EditProfileForm, self).save(commit=False)
         user.username = self.cleaned_data['username']
@@ -259,6 +237,7 @@ class EditPlayerForm(UserChangeForm):
     class Meta:
         model = Player
         fields = ('name', 'team', 'rank')
+        exclude = ('password',)
 
     # verify that username is not empty, and that it is available
     def clean_name(self):
@@ -295,6 +274,7 @@ class EditCityOwner(UserChangeForm):
     class Meta:
         model = Subcity
         fields = ('coords', 'player', 'culture', 'quality')
+        exclude = ('password',)
 
     # Validate that player exists
     def clean_player(self):
