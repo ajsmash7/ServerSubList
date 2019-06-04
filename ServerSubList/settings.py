@@ -29,7 +29,7 @@ LOGIN_REDIRECT_URL = 'subCityList:my_user_profile'    # Home Page
 LOGOUT_REDIRECT_URL = 'subCityList:homepage'
 # SECURITY WARNING: don't run with debug turned on in production!
 
-SECURE_SSL_REDIRECT = False
+# SECURE_SSL_REDIRECT = False
 # SECURE_CONTENT_TYPE_NOSNIFF = True
 # SECURE_BROWSER_XSS_FILTER = True
 # SESSION_COOKIE_SECURE = True
@@ -113,21 +113,12 @@ WSGI_APPLICATION = 'ServerSubList.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-# DATABASE_URL = os.environ.get('DATABASE_URL')
-#
-# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-#
-# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'deps9vnq3c83o0',
-        'USER': 'cmctzgctzkxumi',
-        'PASSWORD': os.environ.get('GREY_DEV_DB_PW'),
-        'HOST': 'ec2-54-235-167-210.compute-1.amazonaws.com',
-        'PORT': '5432',
-    },
+    'default': dj_database_url.config(conn_max_age=600),
 
     'test': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -137,6 +128,15 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '5432',
         },
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'deps9vnq3c83o0',
+#         'USER': 'cmctzgctzkxumi',
+#         'PASSWORD': os.environ.get('GREY_DEV_DB_PW'),
+#         'HOST': 'ec2-54-235-167-210.compute-1.amazonaws.com',
+#         'PORT': '5432',
+#     },
     # 'default': {
     #
     #     'ENGINE': 'django.db.backends.sqlite3',
@@ -188,7 +188,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static/'),
 )
 django_heroku.settings(locals())
 
