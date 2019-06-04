@@ -37,7 +37,7 @@ SECURE_SSL_REDIRECT = False
 # X_FRAME_OPTIONS = 'DENY'
 
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -120,29 +120,29 @@ WSGI_APPLICATION = 'ServerSubList.wsgi.application'
 # DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'deps9vnq3c83o0',
-    #     'USER': 'cmctzgctzkxumi',
-    #     'PASSWORD': os.environ.get('GREY_DEV_DB_PW'),
-    #     'HOST': 'ec2-54-235-167-210.compute-1.amazonaws.com',
-    #     'PORT': '5432',
-    # },
-    #
-    # 'test': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'greylocaldb',
-    #     'USER': 'Ashley Johnson',
-    #     'PASSWORD': os.environ.get('GREY_DB_PW'),
-    #     'HOST': 'localhost',
-    #     'PORT': '5432',
-    #     },
     'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'deps9vnq3c83o0',
+        'USER': 'cmctzgctzkxumi',
+        'PASSWORD': os.environ.get('GREY_DEV_DB_PW'),
+        'HOST': 'ec2-54-235-167-210.compute-1.amazonaws.com',
+        'PORT': '5432',
+    },
 
-        'ENGINE': 'django.db.backends.sqlite3',
-
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
+    'test': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'greylocaldb',
+        'USER': 'Ashley Johnson',
+        'PASSWORD': os.environ.get('GREY_DB_PW'),
+        'HOST': 'localhost',
+        'PORT': '5432',
+        },
+    # 'default': {
+    #
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #     }
 }
 
 
@@ -190,6 +190,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
 
 
