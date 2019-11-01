@@ -33,5 +33,5 @@ sqlparse==0.3.0
 urllib3==1.24.3
 validators==0.12.6
 views==0.3
-Werkzeug==0.15.2
+Werkzeug==0.15.3
 whitenoise==4.1.2
